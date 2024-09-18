@@ -56,6 +56,8 @@ int VMStructs::_nmethod_state_offset = -1;
 int VMStructs::_nmethod_level_offset = -1;
 int VMStructs::_nmethod_metadata_offset = -1;
 int VMStructs::_nmethod_immutable_offset = -1;
+int VMStructs::_nmethod_end_offset = -1;
+int VMStructs::_nmethod_jvmci_data_offset = -1;
 int VMStructs::_method_constmethod_offset = -1;
 int VMStructs::_method_code_offset = -1;
 int VMStructs::_constmethod_constants_offset = -1;
@@ -214,6 +216,10 @@ void VMStructs::initOffsets() {
                     _scopes_data_offset = *(int*)(entry + offset_offset);
                 } else if (strcmp(field, "_scopes_data_begin") == 0) {
                     _scopes_data_offset = - *(int*)(entry + offset_offset);
+                } else if (strcmp(field, "_nmethod_end_offset") == 0) {
+                    _nmethod_end_offset = *(int*)(entry + offset_offset);
+                } else if (strcmp(field, "_jvmci_data_offset") == 0) {
+                    _nmethod_jvmci_data_offset = *(int*)(entry + offset_offset);
                 }
             } else if (strcmp(type, "Method") == 0) {
                 if (strcmp(field, "_constMethod") == 0) {

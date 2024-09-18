@@ -61,6 +61,8 @@ class VMStructs {
     static int _nmethod_level_offset;
     static int _nmethod_metadata_offset;
     static int _nmethod_immutable_offset;
+    static int _nmethod_end_offset;
+    static int _nmethod_jvmci_data_offset;
     static int _method_constmethod_offset;
     static int _method_code_offset;
     static int _constmethod_constants_offset;
@@ -446,6 +448,18 @@ class NMethod : VMStructs {
 
     const char* name() {
         return *(const char**) at(_nmethod_name_offset);
+    }
+
+    const char* jvmci_name() {
+        if (_nmethod_jvmci_data_offset > 0 && _nmethod_end_offset > 0 &&
+            *(int*)at(_nmethod_jvmci_data_offset) < *(int*)at(_nmethod_end_offset)) {
+            bool has_name = *(bool*) at(*(int*)at(_nmethod_jvmci_data_offset));
+            if (has_name) {
+                return (const char*) at((*(int*)at(_nmethod_jvmci_data_offset)) /* &JVMCINMethodData */ +
+                                         24 /* sizeof(JVMCINMethodData) */);
+            }
+        }
+        return NULL;
     }
 
     bool isNMethod() {

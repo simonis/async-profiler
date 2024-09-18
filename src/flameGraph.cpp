@@ -181,9 +181,9 @@ void FlameGraph::printFrame(Writer& out, u32 key, const Trie& f, int level, u64 
         p += snprintf(p, 100, "f(%u,%d,%llu", name_and_type, level, x - _last_x);
     }
 
-    if (f._total != _last_total || has_extra_types) {
+    if (true/*f._total != _last_total || has_extra_types*/) {
         p += snprintf(p, 100, ",%llu", f._total);
-        if (has_extra_types) {
+        if (true/*has_extra_types*/) {
             p += snprintf(p, 100, ",%llu,%llu,%llu", f._inlined, f._c1_compiled, f._interpreted);
         }
     }

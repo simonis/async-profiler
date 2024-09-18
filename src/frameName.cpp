@@ -258,6 +258,8 @@ const char* FrameName::name(ASGCT_CallFrame& frame, bool for_matching) {
     switch (frame.bci) {
         case BCI_NATIVE_FRAME:
             return decodeNativeSymbol((const char*)frame.method_id);
+        case BCI_TRUFFLE_FRAME:
+            return (const char*)frame.method_id;
 
         case BCI_ALLOC:
         case BCI_ALLOC_OUTSIDE_TLAB:

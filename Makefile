@@ -18,8 +18,8 @@ CC=$(CROSS_COMPILE)gcc
 CXX=$(CROSS_COMPILE)g++
 STRIP=$(CROSS_COMPILE)strip
 
-CFLAGS=-O3 -fno-exceptions
-CXXFLAGS=-O3 -fno-exceptions -fno-omit-frame-pointer -fvisibility=hidden
+CFLAGS=-g -fno-exceptions
+CXXFLAGS=-g -fno-exceptions -fno-omit-frame-pointer -fvisibility=hidden
 CPPFLAGS=
 DEFS=-DPROFILER_VERSION=\"$(PROFILER_VERSION)\"
 INCLUDES=-I$(JAVA_HOME)/include -Isrc/helper
