@@ -1495,7 +1495,7 @@ void Profiler::dumpFlameGraph(Writer& out, Arguments& args, bool tree) {
     u64 printed_sample_count = 0;
 
     {
-        FrameName fn(args, args._style & ~STYLE_ANNOTATE, _epoch, _thread_names_lock, _thread_names);
+        FrameName fn(args, args._style, _epoch, _thread_names_lock, _thread_names);
 
         std::vector<CallTraceSample*> samples;
         _call_trace_storage.collectSamples(samples);

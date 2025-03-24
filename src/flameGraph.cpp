@@ -86,7 +86,7 @@ class Node {
 
 Trie* FlameGraph::addChild(Trie* f, const char* name, FrameTypeId type, u64 value) {
     size_t len = strlen(name);
-    bool has_suffix = len > 4 && name[len - 4] == '_' && name[len - 3] == '[' && name[len - 1] == ']';
+    bool has_suffix = false;//len > 4 && name[len - 4] == '_' && name[len - 3] == '[' && name[len - 1] == ']';
     std::string s(name, has_suffix ? len - 4 : len);
 
     u32 name_index = _cpool[s];
